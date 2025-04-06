@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시글 상세</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<div class="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
+    <!-- 제목 -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b pb-2" th:text="${post.getCreatedDate()}"></h2>
+
+    <!-- 작성자 정보 -->
+    <div class="flex items-center space-x-3 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-blue-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A12.07 12.07 0 0 1 4 12c0-2.04.49-3.97 1.354-5.637M12 4v16m7.646-13.637A11.985 11.985 0 0 1 20 12c0 2.04-.49 3.97-1.354 5.637"/>
+        </svg>
+        <p class="text-gray-600 text-lg">
+            작성자: <span class="font-semibold text-blue-500" th:text="${post.user.username}"></span>
+        </p>
+    </div>
+
+    <!-- URL 기반 이미지 자동 표시 -->
+    <div th:if="${post.link.matches('.*(http|https)://.*')}" class="mb-6">
+        <img th:src="${post.link}" alt="게시글 이미지 (내용 포함 링크)" class="w-full rounded-lg shadow-md">
+    </div>
+
+    <!-- 직접 업로드한 이미지 표시 (Base64 변환) -->
+    <div th:if="${post.image != null}" class="mb-6">
+        <img th:src="${dataUri}"
+             alt="게시글 이미지"
+             class="w-full rounded-lg shadow-md">
+    </div>
+
+
+    <!-- 버튼 -->
+    <div class="mt-6 flex justify-end">
+        <a href="/posts">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+                목록으로 돌아가기
+            </button>
+        </a>
+    </div>
+</div>
+<footer class="absolute bottom-2 w-full text-center">
+    <div class="text-gray-400 text-xs hover:text-gray-600">
+        &copy; hae02y
+    </div>
+</footer>
+</body>
+</html>

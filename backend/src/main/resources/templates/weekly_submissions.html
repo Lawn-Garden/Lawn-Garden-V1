@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>이번 주 제출 현황</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+    <h2 class="text-2xl font-bold text-gray-800 text-center">이번 주 제출 현황</h2>
+    <p class="text-gray-600 text-center mt-2">주별 최소 5회 이상 제출 필수!</p>
+
+    <ul class="mt-4">
+        <li th:each="entry : ${submissionData}" class="flex justify-between p-3 border-b border-gray-200">
+            <span th:text="${entry.key.username}" class="font-semibold text-gray-700"></span>
+            <span th:text="${entry.value}" class="font-semibold"
+                  th:classappend="${entry.value < 5} ? 'text-red-500' : 'text-green-500'">
+                </span>
+        </li>
+    </ul>
+
+    <div class="mt-6">
+        <a href="/home">
+            <button class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+                홈으로 돌아가기
+            </button>
+        </a>
+    </div>
+</div>
+<footer class="absolute bottom-2 w-full text-center">
+    <div class="text-gray-400 text-xs hover:text-gray-600">
+        &copy; hae02y
+    </div>
+</footer>
+</body>
+</html>

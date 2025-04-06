@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시판</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<div class="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full">
+    <!-- 상단 타이틀 & 글쓰기 버튼 -->
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">📌 게시글 목록</h2>
+        <div>
+            <a href="/posts/new">
+                <button class="bg-blue-500 text-white px-1 py-2 rounded-md hover:bg-blue-600 transition">
+                    글쓰기 ✏️
+                </button>
+            </a>
+            <a href="/home">
+                <button class="bg-red-500 text-white px-1 py-2 rounded-md hover:bg-blue-600 transition">
+                    홈으로 돌아가기
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <!-- 게시글 목록 -->
+    <ul class="space-y-4">
+        <li th:each="post : ${posts}" class="p-4 bg-gray-50 rounded-md shadow-sm hover:shadow-md transition">
+            <a th:href="@{/posts/{id}(id=${post.id})}"
+               class="text-xl font-semibold text-blue-500 hover:underline"
+               th:text="${post.createdDate}"></a>
+            <p class="text-gray-600 mt-1">
+                ✍ 작성자: <span class="font-semibold text-gray-800" th:text="${post.user.username}"></span>
+            </p>
+        </li>
+    </ul>
+</div>
+<footer class="absolute bottom-2 w-full text-center">
+    <div class="text-gray-400 text-xs hover:text-gray-600">
+        &copy; hae02y
+    </div>
+</footer>
+</body>
+</html>
