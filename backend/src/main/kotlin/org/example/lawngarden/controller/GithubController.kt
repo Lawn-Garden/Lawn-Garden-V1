@@ -1,6 +1,6 @@
 package org.example.lawngarden.controller
 
-import org.example.lawngarden.auth.UserDetailsImpl
+import org.example.lawngarden.auth.details.UserDetailsImpl
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

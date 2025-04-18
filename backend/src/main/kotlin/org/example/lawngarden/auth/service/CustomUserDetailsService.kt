@@ -1,6 +1,6 @@
-package org.example.lawngarden
+package org.example.lawngarden.auth.service
 
-import org.example.lawngarden.auth.UserDetailsImpl
+import org.example.lawngarden.auth.details.UserDetailsImpl
 import org.example.lawngarden.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

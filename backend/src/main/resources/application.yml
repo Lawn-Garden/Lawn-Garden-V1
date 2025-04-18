@@ -4,20 +4,17 @@ server:
     context-path: /
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mariadb://43.201.157.40:3306/garden
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: dev
+    password: qwe123,.
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
   thymeleaf:
     cache: false  # ?? ??? false, ?? ? true
     prefix: classpath:/templates/
@@ -37,4 +34,7 @@ logging:
     org:
       springframework:
         security: DEBUG  # Spring Security ?? ??
-
+jwt:
+  secret: lawn-garden-jwt-secret-key-kkk-is-not-weak-ok
+  access-token-expiration: 900000        # 15분
+  refresh-token-expiration: 1209600000   # 14일

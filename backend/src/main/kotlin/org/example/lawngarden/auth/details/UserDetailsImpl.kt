@@ -1,11 +1,11 @@
-package org.example.lawngarden.auth
+package org.example.lawngarden.auth.details
 
 import org.example.lawngarden.entity.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class UserDetailsImpl(@JvmField val user: User) : UserDetails {
+class UserDetailsImpl(val user: User) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority?> {
         return listOf(SimpleGrantedAuthority("ROLE_" + user.getRole().name))
     }

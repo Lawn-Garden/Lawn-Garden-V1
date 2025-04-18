@@ -1,7 +1,7 @@
 package org.example.lawngarden.entity
 
 import jakarta.persistence.*
-import org.example.lawngarden.auth.Role
+import org.example.lawngarden.auth.enums.Role
 
 @Entity
 @Table(name = "users")
