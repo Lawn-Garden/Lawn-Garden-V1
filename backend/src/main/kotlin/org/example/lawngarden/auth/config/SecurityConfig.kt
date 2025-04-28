@@ -23,7 +23,7 @@ class SecurityConfig(
         http
                 .csrf { it.disable() }
             .authorizeHttpRequests {
-            it.requestMatchers("/api/v1/register", "/api/v1/auth/login").permitAll()
+            it.requestMatchers("/api/v1/users/register", "/api/v1/auth/login").permitAll()
             it.anyRequest().authenticated()
         }
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)

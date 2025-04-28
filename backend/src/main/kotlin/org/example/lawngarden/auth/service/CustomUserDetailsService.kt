@@ -10,7 +10,9 @@ import java.util.function.Supplier
 
 
 @Service
-class CustomUserDetailsService(private val userRepository: UserRepository) : UserDetailsService {
+class CustomUserDetailsService(
+    private val userRepository: UserRepository
+) : UserDetailsService {
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
         val user = userRepository.findByUsername(username)

@@ -25,8 +25,8 @@ class Post(
     @Column(columnDefinition = "LONGBLOB")
     var image: ByteArray,
 
-    @Transient // JPA 저장 대상 제외
-    var imageFile: MultipartFile? = null, // 업로드용 임시 필드
+    @Transient
+    var imageFile: MultipartFile? = null,
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

@@ -8,10 +8,13 @@ import org.example.lawngarden.auth.enums.Role
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @Column(nullable = false, unique = true)
     var username: String,
+
+    @Column(nullable = false)
+    var email: String,
 
     @Column(nullable = false)
     private var password: String,

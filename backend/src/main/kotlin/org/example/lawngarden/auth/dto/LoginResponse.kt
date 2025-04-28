@@ -1,4 +1,4 @@
-package org.example.lawngarden.auth
+package org.example.lawngarden.auth.dto
 
 data class LoginResponse(
     val accessToken: String,

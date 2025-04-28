@@ -1,6 +1,6 @@
 package org.example.lawngarden
 
-import org.example.lawngarden.auth.JwtProperties
+import org.example.lawngarden.auth.prop.JwtProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

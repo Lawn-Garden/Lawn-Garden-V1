@@ -1,11 +1,12 @@
-package org.example.lawngarden.auth
+package org.example.lawngarden.auth.token
 
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
-import org.example.lawngarden.auth.details.UserDetailsImpl
+import org.example.lawngarden.auth.prop.JwtProperties
 import org.example.lawngarden.entity.User
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import java.util.*
 import javax.crypto.SecretKey
@@ -13,6 +14,7 @@ import javax.crypto.SecretKey
 @Component
 class TokenProvider(
     private val jwtProperties : JwtProperties,
+    private val tokenBlacklist: TokenBlacklist,
 ) {
     fun getSigningKey(secret: String): SecretKey {
         val key = Keys.hmacShaKeyFor(secret.toByteArray())
@@ -53,6 +55,11 @@ class TokenProvider(
             .parseSignedClaims(token)
             .payload
             .subject
+    }
+    
+    fun clearToken(user: User,token:String) {
+        tokenBlacklist.add(user,token)
+        SecurityContextHolder.clearContext()
     }
 
 }
