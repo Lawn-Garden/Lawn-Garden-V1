@@ -18,8 +18,8 @@ class Post(
     @Column(nullable = true)
     var createdDate: LocalDate? = null,
 
-    @Column(nullable = false)
-    var contents: LocalDate,
+    @Column(nullable = true)
+    var contents: String? = null,
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
