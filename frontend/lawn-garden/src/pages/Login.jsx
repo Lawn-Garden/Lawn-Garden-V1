@@ -1,11 +1,21 @@
 import React from 'react'
 import Logo from '@/assets/Logo.svg'
+import { LogoStyle } from '@/styles/LogoStyle'
+import styled from 'styled-components';
+
+const Wrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 export default function Login() {
   return (
-    <main>
-      <img src={Logo} />
-      <p>로그인</p>
-    </main>
+    <Wrapper>
+      <LogoStyle src={Logo} />
+      <input/>
+      <input/>
+      <button>Login</button>
+    </Wrapper>
   )
 }
