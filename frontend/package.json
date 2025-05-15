@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-router-dom": "^7.6.0",
+    "styled-components": "^6.1.18",
     "zustand": "^4.5.7"
   }
 }
