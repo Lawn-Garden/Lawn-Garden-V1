@@ -17,9 +17,9 @@ class UserController(
     private val userService: UserService
 ) {
     @PostMapping("/register")
-    fun register(@RequestBody registerRequestDto : RegisterRequestDto) : ResponseEntity<Void> {
-        userService.saveUser(registerRequestDto)
-        return ResponseEntity.ok().build()
+    fun register(@RequestBody registerRequestDto : RegisterRequestDto) : ResponseEntity<UserDetailResponseDto> {
+        val saveUser = userService.saveUser(registerRequestDto)
+        return ResponseEntity.ok().body(saveUser)
     }
 
     @GetMapping("/{userId}")
@@ -32,5 +32,11 @@ class UserController(
     fun getUserList():  ResponseEntity<List<UserDetailResponseDto>> {
         val findAllUser : List<UserDetailResponseDto> = userService.findAllUser()
         return ResponseEntity.ok(findAllUser)
+    }
+
+    @GetMapping("today")
+    fun getTodayUser(@RequestParam commit: String): ResponseEntity<List<UserDetailResponseDto>> {
+        val findTodayCommitUser = userService.findTodayCommitUser(commit)
+        return ResponseEntity.ok(findTodayCommitUser);
     }
 }

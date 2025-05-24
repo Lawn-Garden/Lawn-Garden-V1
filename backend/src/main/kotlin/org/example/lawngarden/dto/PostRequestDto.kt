@@ -7,6 +7,6 @@ import java.time.LocalDate
 
 data class PostRequestDto(
     var link: String? = null,
-    var contents: String?,
-    var imageFile: MultipartFile? = null,
+    var contents: String? = null,
+    var imageFile: MultipartFile? = null
 )

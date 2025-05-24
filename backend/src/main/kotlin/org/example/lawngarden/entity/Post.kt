@@ -19,6 +19,9 @@ class Post(
     var createdDate: LocalDate? = null,
 
     @Column(nullable = true)
+    var updateDate: LocalDate? = null,
+
+    @Column(nullable = true)
     var contents: String? = null,
 
     @Lob

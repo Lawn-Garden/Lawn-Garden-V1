@@ -15,38 +15,56 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/v1/posts")
 class PostController(
-    private val postService : PostService
+    private val postService: PostService
 ) {
-    //TODO : 모든 포스트를 조회
+    //모든 포스트를 조회
     @GetMapping("")
-    fun getAllPosts(@RequestParam("page") page :Int,
-                    @RequestParam("size") size :Int
+    fun getAllPosts(
+        @RequestParam("page", defaultValue = "0") page: Int,
+        @RequestParam("size", defaultValue = "10") size: Int
     ): ResponseEntity<Page<PostResponseDto>> {
-        val pageData : Pageable = PageRequest.of(page, size)
+        val pageData: Pageable = PageRequest.of(page, size)
         val findAllPost: Page<PostResponseDto> = postService.findAllPost(pageData)
         return ResponseEntity.ok(findAllPost)
     }
 
-    //TODO : 특정 포스트 상세 조회
+    //특정 포스트 상세 조회
     @GetMapping("/{postId}")
-    fun getPostDetail(@PathVariable postId: Long) : ResponseEntity<PostDetailResponseDto> {
-        val findPostDetail : PostDetailResponseDto? = postService.findPostDetail(postId)
+    fun getPostDetail(@PathVariable postId: Long): ResponseEntity<PostDetailResponseDto> {
+        val findPostDetail: PostDetailResponseDto = postService.findPostDetail(postId)
         return ResponseEntity.ok(findPostDetail)
     }
 
-    //TODO : 포스트 등록
-    // 1일 1개 등록 유저를 검사 해야함
+    //포스트 등록
     @PostMapping
-    fun postPost(@AuthenticationPrincipal userDetailsImpl: UserDetailsImpl,
-                 @RequestBody postRequestDto: PostRequestDto,
-                 ) {
+    fun postPost(
+        @AuthenticationPrincipal userDetailsImpl: UserDetailsImpl,
+        @ModelAttribute postRequestDto: PostRequestDto,
+    ) {
         val user = userDetailsImpl.user
-        postService.savePost(PostRequestDto, user)
+        postService.savePost(postRequestDto, user)
+    }
 
+    //포스트 수정
+    @PatchMapping("/{postId}")
+    fun patchPost(
+        @PathVariable postId: Long,
+        @AuthenticationPrincipal userDetailsImpl: UserDetailsImpl,
+        @ModelAttribute postRequestDto: PostRequestDto
+    ) {
+        val user = userDetailsImpl.user
+        postService.updatePost(postRequestDto, postId, user)
 
     }
 
-    //TODO : 포스트 수정
-
-    //TODO : 포스트 삭제
+    //포스트 삭제
+    @DeleteMapping("/{postId}")
+    fun deletePost(
+        @PathVariable postId: Long,
+        @AuthenticationPrincipal userDetailsImpl: UserDetailsImpl,
+    ): ResponseEntity<PostDetailResponseDto> {
+        val user = userDetailsImpl.user
+        postService.deletePost(postId, user)
+        return ResponseEntity.noContent().build()
+    }
 }
