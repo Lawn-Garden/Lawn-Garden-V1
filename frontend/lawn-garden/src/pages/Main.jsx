@@ -14,6 +14,7 @@ const SignsSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.3rem;
 `
 export default function Main() {
   return (
@@ -25,11 +26,11 @@ export default function Main() {
       </HeaderText>
 
       <SignsSection>
-        <ArrowButton text='잔디에 물주기'/>
-        <ArrowButton text='인증 내역 확인'/>
-        <ArrowButton text='잔디정원 참여자'/>
-        <ArrowButton text='내 정원 조회'/>
-        <ArrowButton text='로그아웃'/>
+        <ArrowButton direction='left' text='잔디에 물주기'/>
+        <ArrowButton direction='right' text='인증 내역 확인'/>
+        <ArrowButton direction='left' text='잔디정원 참여자'/>
+        <ArrowButton direction='right' text='내 정원 조회'/>
+        <ArrowButton direction='center' text='로그아웃'/>
       </SignsSection>
     </Wrapper>
   )
