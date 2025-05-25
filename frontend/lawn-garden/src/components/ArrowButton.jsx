@@ -30,9 +30,9 @@ const Button = styled.button`
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     `}
 `
-export default function ArrowButton({direction, text, angle}) {
+export default function ArrowButton({direction, text, angle, onClick}) {
   return (
-    <Button direction={direction} angle={angle}>
+    <Button direction={direction} angle={angle} onClick={onClick}>
         {text}
     </Button>
   )

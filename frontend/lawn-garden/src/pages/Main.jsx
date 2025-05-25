@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import Wrapper from '@/styles/Wrapper'
 import ArrowButton from '@/components/ArrowButton'
@@ -27,6 +28,7 @@ const Pole = styled.div`
     bottom: 0;
 `
 export default function Main() {
+    const navigate = useNavigate();
   return (
     <Wrapper>
       <HeaderText>
@@ -37,7 +39,8 @@ export default function Main() {
 
       <SignsSection>
         <Pole />
-        <ArrowButton direction='left' text='잔디에 물주기' angle={4}/>
+        <ArrowButton direction='left' text='잔디에 물주기' angle={4}
+        onClick={() => navigate('/watering')}/>
         <ArrowButton direction='right' text='인증 내역 확인' angle={-4}/>
         <ArrowButton direction='left' text='잔디정원 참여자' angle={10}/>
         <ArrowButton direction='right' text='내 정원 조회' angle={-10}/>
