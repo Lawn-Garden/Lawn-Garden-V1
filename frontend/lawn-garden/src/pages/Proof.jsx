@@ -56,6 +56,7 @@ const Item = styled.div`
     box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     gap: 1rem;
     color: var(--color-content-font);
+    cursor: pointer;
 `
 
 const Info = styled.div`
