@@ -8,6 +8,6 @@ export const SignText = styled.p`
 export const TextButton = styled.span`
     font-size: 14px;
     font-weight: bold;
-    color: #3D8D7A;
+    color: var(--color-deep-green);
     cursor: pointer;
 `;
