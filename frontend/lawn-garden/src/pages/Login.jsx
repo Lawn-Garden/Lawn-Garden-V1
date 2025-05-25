@@ -11,7 +11,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Wrapper marginBottom>
       <LogoStyle src={Logo} />
       <Input placeholder='Email'/>
       <Input placeholder='PASSWORD'/>

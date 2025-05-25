@@ -7,7 +7,7 @@ const Wrapper = styled.main`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 9vh;
+  ${({ marginBottom }) => marginBottom && `margin-bottom: 9vh;`}
 `
 
 export default Wrapper;

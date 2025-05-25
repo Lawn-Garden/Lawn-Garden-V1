@@ -30,7 +30,7 @@ const Pole = styled.div`
 export default function Main() {
     const navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper marginBottom>
       <HeaderText>
         <h2>환영합니다<br />
         <span>아이디</span> 님!</h2>

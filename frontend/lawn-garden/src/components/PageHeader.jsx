@@ -8,6 +8,7 @@ const Header = styled.header`
     align-items: center;
     padding: 1rem;
     gap: 1rem;
+    white-space: nowrap;
 
     h1 {
         font-size: 1.8rem;
