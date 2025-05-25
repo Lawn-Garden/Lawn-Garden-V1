@@ -3,6 +3,7 @@ import App from '@/App';
 import Login from '@/pages/Login.jsx'
 import Join from '@/pages/Join.jsx'
 import NotFound from '@/pages/NotFound.jsx'
+import Main from '@/pages/Main.jsx'
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
         {   
             path: 'join', 
             element: <Join /> 
+        },
+        {
+            path: 'main',
+            element: <Main />
         },
         { 
             path: '*', 
