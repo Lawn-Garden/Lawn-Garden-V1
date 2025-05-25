@@ -4,10 +4,10 @@ import Wrapper from '@/styles/Wrapper'
 import ArrowButton from '@/components/ArrowButton'
 
 const HeaderText = styled.header`
-    color: #99BC85;
+    color: var(--color-light-green);
     margin-bottom: 12vh;
     span {
-        color: #3D8D7A;
+        color: var(--color-deep-green);
     }
 `
 const SignsSection = styled.section`
@@ -31,7 +31,7 @@ export default function Main() {
     <Wrapper>
       <HeaderText>
         <h2>환영합니다<br />
-        <span>아이디</span>님!</h2>
+        <span>아이디</span> 님!</h2>
         <p>당신의 레벨: <span>잔디관리인</span></p>
       </HeaderText>
 
