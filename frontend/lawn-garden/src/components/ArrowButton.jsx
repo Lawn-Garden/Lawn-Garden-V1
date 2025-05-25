@@ -11,6 +11,7 @@ const Button = styled.button`
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 10px;
+    transform: ${({angle}) => `rotate(${angle}deg)`};
 
     &:hover {
         background-color: #B89687;
@@ -29,9 +30,9 @@ const Button = styled.button`
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     `}
 `
-export default function ArrowButton({direction, text}) {
+export default function ArrowButton({direction, text, angle}) {
   return (
-    <Button direction={direction}>
+    <Button direction={direction} angle={angle}>
         {text}
     </Button>
   )

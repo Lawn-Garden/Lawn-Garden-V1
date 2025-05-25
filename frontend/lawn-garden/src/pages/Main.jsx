@@ -26,11 +26,11 @@ export default function Main() {
       </HeaderText>
 
       <SignsSection>
-        <ArrowButton direction='left' text='잔디에 물주기'/>
-        <ArrowButton direction='right' text='인증 내역 확인'/>
-        <ArrowButton direction='left' text='잔디정원 참여자'/>
-        <ArrowButton direction='right' text='내 정원 조회'/>
-        <ArrowButton direction='center' text='로그아웃'/>
+        <ArrowButton direction='left' text='잔디에 물주기' angle={4}/>
+        <ArrowButton direction='right' text='인증 내역 확인' angle={-4}/>
+        <ArrowButton direction='left' text='잔디정원 참여자' angle={10}/>
+        <ArrowButton direction='right' text='내 정원 조회' angle={-13}/>
+        <ArrowButton direction='center' text='로그아웃' angle={2}/>
       </SignsSection>
     </Wrapper>
   )
