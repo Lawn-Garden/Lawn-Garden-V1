@@ -5,16 +5,26 @@ import ArrowButton from '@/components/ArrowButton'
 
 const HeaderText = styled.header`
     color: #99BC85;
+    margin-bottom: 12vh;
     span {
         color: #3D8D7A;
     }
 `
 const SignsSection = styled.section`
-    margin-top: 3vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
+    gap: 1.15rem;
+    margin-top: 0.5rem;
+`
+const Pole = styled.div`
+    width: 15px;
+    background-color: #997C70;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 30vh;
+    bottom: 0;
 `
 export default function Main() {
   return (
@@ -26,10 +36,11 @@ export default function Main() {
       </HeaderText>
 
       <SignsSection>
+        <Pole />
         <ArrowButton direction='left' text='잔디에 물주기' angle={4}/>
         <ArrowButton direction='right' text='인증 내역 확인' angle={-4}/>
         <ArrowButton direction='left' text='잔디정원 참여자' angle={10}/>
-        <ArrowButton direction='right' text='내 정원 조회' angle={-13}/>
+        <ArrowButton direction='right' text='내 정원 조회' angle={-10}/>
         <ArrowButton direction='center' text='로그아웃' angle={2}/>
       </SignsSection>
     </Wrapper>
