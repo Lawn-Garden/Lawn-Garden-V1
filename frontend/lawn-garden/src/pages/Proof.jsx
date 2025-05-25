@@ -3,35 +3,8 @@ import React from 'react'
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import Container from '@/components/Container'
-import backButton from '@/assets/backButton.svg'
+import PageHeader from '@/components/PageHeader'
 
-const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    gap: 1rem;
-
-    h1 {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: var(--color-deep-green);
-    }
-`
-const BackButton = styled.button`
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    img {
-        width: 24px;
-        height: 24px;
-    }
-
-    &:hover{
-        transform: scale(1.1);
-    }
-`
 const WriteButton = styled.button`
     background-color: var(--color-light-green);
     border: none;
@@ -51,13 +24,9 @@ const WriteButton = styled.button`
 export default function Proof() {
   return (
     <Wrapper>
-      <Header>
-        <BackButton aria-label="뒤로가기">
-            <img src={backButton} alt="뒤로가기" />
-        </BackButton>
-        <h1>오늘의 잔디정원</h1>
-        <WriteButton >물주기</WriteButton>
-      </Header>
+      <PageHeader 
+        title="오늘의 잔디정원"
+        rightButton={<WriteButton >물주기</WriteButton>}/>
 
       <Container>
 
