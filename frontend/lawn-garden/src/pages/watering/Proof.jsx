@@ -1,5 +1,6 @@
 // 물주기 목록 화면 watering
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import Container from '@/components/Container'
@@ -24,6 +25,7 @@ const WriteButton = styled.button`
         background-color: var(--color-deep-green);
     }
 `
+
 const SearchHeader = styled.header`
     display: flex;
     justify-content: end;
@@ -57,21 +59,26 @@ const FooterPagination = styled.footer`
 `
 
 export default function Proof() {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
         <PageHeader 
             title="오늘의 잔디정원"
-            rightButton={<WriteButton >물주기</WriteButton>}/>
+            rightButton=
+            {<WriteButton onClick={() => navigate('/watering/write')}
+            >물주기</WriteButton>}/>
 
         <Container>
             <SearchHeader>
-                <button>날짜검색</button>
+                {/* <button>날짜검색</button> */}
                 <SearchBar placeholder='정원사 검색'/>
             </SearchHeader>
             
             <List>
             {proofData.map((item, index) => (
-                <ProofItem key={index} date={item.date} writer={item.writer} />
+                <ProofItem key={index} date={item.date} writer={item.writer} 
+                onClick={() => navigate('/watering/:id')}/>
             ))}
             </List>
         </Container>

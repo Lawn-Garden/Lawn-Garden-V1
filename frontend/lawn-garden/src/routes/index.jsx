@@ -5,6 +5,8 @@ import Join from '@/pages/Join.jsx'
 import NotFound from '@/pages/NotFound.jsx'
 import Main from '@/pages/Main.jsx'
 import Proof from '@/pages/watering/Proof.jsx'
+import ReadPage from '@/pages/watering/ReadPage.jsx'
+import WritePage from '@/pages/watering/WritePage.jsx'
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
         { 
             path: 'watering', 
             element: <Proof /> 
+        },
+        { 
+            path: 'watering/:id', 
+            element: <ReadPage /> 
+        },
+        { 
+            path: 'watering/write', 
+            element: <WritePage /> 
         },
         { 
             path: '*', 

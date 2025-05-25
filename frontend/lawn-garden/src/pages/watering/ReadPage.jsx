@@ -5,6 +5,7 @@ import Wrapper from '@/styles/Wrapper'
 import PageHeader from '@/components/PageHeader'
 import Container from '@/components/Container'
 import ProofItem from '@/components/ProofItem'
+import Button from '@/components/Button'
 
 const BlockLabel = styled.h2`
     font-size: 1.3rem;
@@ -39,7 +40,7 @@ const CommentBox = styled.textarea`
     }
 `
 
-export default function WritePage() {
+export default function ReadPage() {
   return (
     <Wrapper>
         <PageHeader title="오늘의 잔디정원"/>
@@ -49,15 +50,16 @@ export default function WritePage() {
 
             <BlockLabel>오늘의 활동 인증</BlockLabel>
             <Block>
-                <button>첨부하기</button>
+                이미지가 뿅
             </Block>
 
             <BlockLabel>오늘의 한마디</BlockLabel>
             <Block>
-                <CommentBox 
+                한마디가 뿅
+                {/* <CommentBox 
                 placeholder={
                     '오늘의 한마디를 작성해주세요!\n오늘 공부한 내용이나 기분, 어떤한 내용이든 좋습니다 :)'
-                  }/>
+                  }/> */}
             </Block>
         </Container>
     </Wrapper>

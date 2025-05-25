@@ -30,9 +30,9 @@ const Info = styled.div`
     }
 `
 
-export default function ProofItem({date, writer}) {
+export default function ProofItem({date, writer, onClick}) {
   return (
-    <Item>
+    <Item onClick={onClick}>
         <p>🌱</p>
         <Info>
             <span className="date">{date}</span>
