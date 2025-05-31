@@ -8,7 +8,7 @@ const Input = styled.input`
     padding: 10px 20px;
     border: none;
     border-radius: 50px;
-    background-color: #FAF1E6;
+    background-color: var(--color-container-background);
     color: #787878;
 `;
 

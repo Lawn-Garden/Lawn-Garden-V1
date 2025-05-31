@@ -6,6 +6,8 @@ const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  ${({ marginBottom }) => marginBottom && `margin-bottom: 9vh;`}
 `
 
 export default Wrapper;
