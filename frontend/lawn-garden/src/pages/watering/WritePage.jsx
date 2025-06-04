@@ -1,22 +1,14 @@
 // 게시글 조회 페이지
-import React from 'react'
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
+import BlockLabel from '@/styles/BlockLabel'
 import PageHeader from '@/components/PageHeader'
 import Container from '@/components/Container'
 import ProofItem from '@/components/ProofItem'
 import Button from '@/components/Button'
 
-const BlockLabel = styled.h2`
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--color-content-font);
-    text-align: start;
-    margin-top: 1.3rem;
-    margin-bottom: 0.5rem;
-`;
-
-const Block1 = styled.div`
+const PhotoBlock = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +58,31 @@ const WriteButton = styled.button`
         background-color: var(--color-deep-green);
     }
 `
+const PreviewImage = styled.img`
+  max-width: 300px;
+  height: 15vh;
+  border-radius: 12px;
+`;
 
 export default function WritePage() {
+    const fileInputRef = useRef(null); // ref로 버튼 연결
+    const [previewUrl, setPreviewUrl] = useState(null);
+
+    const handleButtonClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader(); // base64 형태의 URL로 가져옴
+        reader.onload = () => {
+            setPreviewUrl(reader.result); // base64
+        };
+        reader.readAsDataURL(file);
+    };
+
   return (
     <Wrapper>
         <PageHeader title="오늘의 잔디정원"/>
@@ -76,9 +91,19 @@ export default function WritePage() {
             <ProofItem date='2025.03.31' writer='나' />
 
             <BlockLabel>오늘의 활동 인증</BlockLabel>
-            <Block1>
-                <WriteButton>첨부하기</WriteButton>
-            </Block1>
+            <PhotoBlock>
+                {!previewUrl && (
+                    <WriteButton onClick={handleButtonClick}>첨부하기</WriteButton>
+                )}
+                <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
+                />
+                {previewUrl && <PreviewImage src={previewUrl} alt="선택한이미지" />}
+            </PhotoBlock>
 
             <BlockLabel>오늘의 한마디</BlockLabel>
             <Block2>
@@ -87,7 +112,8 @@ export default function WritePage() {
                     '오늘의 한마디를 작성해주세요!\n오늘 공부한 내용이나 기분, 어떤한 내용이든 좋습니다 :)'
                   }/>
             </Block2>
-            <Button $marginB="0px" $bgColor="#A3D1C6">글 작성하기</Button>
+            <Button $marginB="0px" $bgColor="#A3D1C6">
+                글 작성하기</Button>
         </Container>
     </Wrapper>
   )

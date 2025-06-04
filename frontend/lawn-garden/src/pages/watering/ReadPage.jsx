@@ -2,20 +2,12 @@
 import React from 'react'
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
+import BlockLabel from '@/styles/BlockLabel'
 import PageHeader from '@/components/PageHeader'
 import Container from '@/components/Container'
 import ProofItem from '@/components/ProofItem'
 
-const BlockLabel = styled.h2`
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--color-content-font);
-    text-align: start;
-    margin-top: 1.3rem;
-    margin-bottom: 0.5rem;
-`;
-
-const Block1 = styled.div`
+const PhotoBlock = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,19 +31,6 @@ const Block2 = styled.div`
     height: 15vh;
 `;
 
-const CommentBox = styled.textarea`
-    resize: none;
-    width: 100%;
-    border: none;
-    padding: 1rem 1.2rem;
-    background: var(--color-background);
-    font-size: 1rem;
-    color: var(--color-content-font);
-    &:focus {
-        outline: none;
-    }
-`
-
 export default function ReadPage() {
   return (
     <Wrapper>
@@ -61,17 +40,13 @@ export default function ReadPage() {
             <ProofItem date='2025.03.31' writer='나' />
 
             <BlockLabel>오늘의 활동 인증</BlockLabel>
-            <Block1>
+            <PhotoBlock>
                 이미지가 뿅
-            </Block1>
+            </PhotoBlock>
 
             <BlockLabel>오늘의 한마디</BlockLabel>
             <Block2>
                 한마디가 뿅
-                {/* <CommentBox 
-                placeholder={
-                    '오늘의 한마디를 작성해주세요!\n오늘 공부한 내용이나 기분, 어떤한 내용이든 좋습니다 :)'
-                  }/> */}
             </Block2>
         </Container>
     </Wrapper>
