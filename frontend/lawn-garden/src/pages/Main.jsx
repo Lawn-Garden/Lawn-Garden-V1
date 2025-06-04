@@ -41,9 +41,15 @@ export default function Main() {
         <Pole />
         <ArrowButton direction='left' text='잔디에 물주기' angle={4}
         onClick={() => navigate('/watering')}/>
-        <ArrowButton direction='right' text='인증 내역 확인' angle={-4}/>
-        <ArrowButton direction='left' text='잔디정원 참여자' angle={10}/>
-        <ArrowButton direction='right' text='내 정원 조회' angle={-10}/>
+        <ArrowButton direction='right' text='인증 내역 확인' angle={-4}
+        onClick={() => navigate('/laydown')}
+        />
+        <ArrowButton direction='left' text='잔디정원 참여자' angle={10}
+        onClick={() => navigate('/farmer')}
+        />
+        <ArrowButton direction='right' text='내 정원 조회' angle={-10}
+        onClick={() => navigate('/mygarden')}
+        />
         <ArrowButton direction='center' text='로그아웃' angle={2}/>
       </SignsSection>
     </Wrapper>
