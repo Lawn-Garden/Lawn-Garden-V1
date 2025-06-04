@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import PageHeader from '@/components/PageHeader'
-import Container from '@/components/Container'
+import Container from '@/styles/Container'
 import SearchBar from '@/components/SearchBar'
 import { FooterPagination } from '@/styles/FooterPagination';
 import { UserList, UserItem, UserInfoRow, Icon, Count,} from '@/styles/UserList';

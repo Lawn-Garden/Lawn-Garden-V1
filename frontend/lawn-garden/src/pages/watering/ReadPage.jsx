@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import BlockLabel from '@/styles/BlockLabel'
 import PageHeader from '@/components/PageHeader'
-import Container from '@/components/Container'
+import Container from '@/styles/Container'
 import ProofItem from '@/components/ProofItem'
 
 const PhotoBlock = styled.div`

@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
-import Container from '@/components/Container'
+import Container from '@/styles/Container'
 import PageHeader from '@/components/PageHeader'
 import ProofItem from '@/components/ProofItem'
 import SearchBar from '@/components/SearchBar'

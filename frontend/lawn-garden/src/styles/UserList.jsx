@@ -8,6 +8,8 @@ export const UserList = styled.ul`
   gap: 10px;
   max-height: 400px;
   overflow-y: auto;
+  padding-right: 8px;
+  padding-left: 8px;
   
   /* 스크롤바 전체 영역 */
   &::-webkit-scrollbar {
