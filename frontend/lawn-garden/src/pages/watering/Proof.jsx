@@ -3,10 +3,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
-import Container from '@/components/Container'
+import Container from '@/styles/Container'
 import PageHeader from '@/components/PageHeader'
 import ProofItem from '@/components/ProofItem'
 import SearchBar from '@/components/SearchBar'
+import { FooterPagination } from '@/styles/FooterPagination';
 
 import { proofData } from '@/data/proofData';
 
@@ -38,24 +39,6 @@ const List = styled.article`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-`
-
-const FooterPagination = styled.footer`
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-
-    span {
-        width: 10px;
-        height: 10px;
-        background: #ccc;
-        border-radius: 50%;
-
-    &.active {
-      background-color: #5e8f6e;
-    }
-  }
 `
 
 export default function Proof() {

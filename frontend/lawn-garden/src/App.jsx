@@ -18,14 +18,6 @@ const BackgroundLayer = styled.img`
   bottom: 0;
   left: 0;
   width: 100%;
-  // height: auto;
-
-  // left: 50%;                  
-  // transform: translateX(-50%);
-  // width: 1920px;
-  // object-fit: none;  
-  // overflow: hidden;
-
   pointer-events: none; // 마우스 이벤트 무시
   z-index: ${(props) => props.z || -1};
 `;

@@ -5,15 +5,15 @@ const Button = styled.button`
   width: 15.625vw;
   min-width: 200px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: ${(props) => props.$marginB || '20px'};
   height: 40px;
   text-align: center;
   padding: 10px 20px;
   font-weight: bold;
   border: none;
   border-radius: 50px;
-  background-color: #E4EFE7;
-  color: #3D8D7A;
+  background-color: ${(props) => props.$bgColor || '#E4EFE7'};
+  color: ${(props) => props.$textColor || '#3D8D7A' };
 `;
 
 export default Button;
