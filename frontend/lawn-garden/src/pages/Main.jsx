@@ -13,6 +13,7 @@ const HeaderText = styled.header`
 `
 const SignsSection = styled.section`
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     gap: 1.15rem;
@@ -24,8 +25,9 @@ const Pole = styled.div`
     border-radius: 6px;
     position: absolute;
     left: 50%;
-    top: 30vh;
+    top: -5vh;
     bottom: 0;
+    height: 100vh;
 `
 export default function Main() {
     const navigate = useNavigate();
@@ -38,7 +40,7 @@ export default function Main() {
       </HeaderText>
 
       <SignsSection>
-        <Pole />
+      <Pole />
         <ArrowButton direction='left' text='잔디에 물주기' angle={4}
         onClick={() => navigate('/watering')}/>
         <ArrowButton direction='right' text='인증 내역 확인' angle={-4}

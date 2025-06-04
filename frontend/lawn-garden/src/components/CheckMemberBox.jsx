@@ -8,10 +8,9 @@ const Container = styled.section`
   width: 50vh;
   border-radius: 30px;
   padding: 1.2rem;
-  margin-top: 1rem;
 
   @media (max-width: 768px) {
-    width: 60vh;
+    width: 40vh;
   }
 `;
 
@@ -21,6 +20,9 @@ const BoxTitle = styled.h2`
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: var(--color-content-font);
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const SubText = styled.p`
@@ -28,6 +30,9 @@ const SubText = styled.p`
   font-size: 0.9rem;
   color: #888;
   margin-bottom: 16px;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export default function CheckMemberBox({ title, description, icon, list }) {
