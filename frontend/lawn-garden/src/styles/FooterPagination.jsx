@@ -11,6 +11,7 @@ export const FooterPagination = styled.footer`
         height: 10px;
         background: #ccc;
         border-radius: 50%;
+        cursor: pointer;
 
     &.active {
       background-color: #5e8f6e;

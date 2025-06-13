@@ -53,6 +53,9 @@ export default function Participant() {
   const [currentPage, setCurrentPage] = useState(0);
   const USERS_PER_PAGE = 7;
 
+  // 정렬 버튼
+  const [sortBy, setSortBy] = useState('name'); // or 'level'
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -66,13 +69,20 @@ export default function Participant() {
     fetchUsers();
   }, []);
 
+  const sortedUsers = [...users];
+
+  if (sortBy === 'name') {
+    sortedUsers.sort((a, b) => a.username.localeCompare(b.username));
+  }
+  
   // 페이지별 유저 잘라내기
-  const paginatedUsers = users.slice(
+  const paginatedUsers = sortedUsers.slice(
     currentPage * USERS_PER_PAGE,
     (currentPage + 1) * USERS_PER_PAGE
   );
   
   const totalPages = Math.ceil(users.length / USERS_PER_PAGE);
+
 
   return (
      <Wrapper>
@@ -83,8 +93,12 @@ export default function Participant() {
                 </BoxText>
                 <SearchHeader>
                     <div>
-                    <Filter>이름순</Filter>
-                    <Filter>레벨순</Filter>
+                    <Filter onClick={() => {
+                        setSortBy('name');
+                        setCurrentPage(0); //클릭시 페이지 초기화
+                      }}
+                    >이름순</Filter>
+                    {/* <Filter>레벨순</Filter> */}
                     </div>
                     <SearchBar placeholder='정원사 검색'/>
                 </SearchHeader>
