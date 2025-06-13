@@ -7,8 +7,7 @@ import Container from '@/styles/Container'
 import SearchBar from '@/components/SearchBar'
 import { FooterPagination } from '@/styles/FooterPagination';
 import { UserList, UserItem, UserInfoRow, Icon, Count,} from '@/styles/UserList';
-import { participants } from '@/data/proofData';
-
+// import { participants } from '@/data/proofData';
 // 유저 정보 불러오기
 import { getAllUsers } from '@/api/user';
 
@@ -50,6 +49,10 @@ const Left = styled.div`
 export default function Participant() {
   const [users, setUsers] = useState([]);
 
+  // 페이지네이션 프론트에서 구현
+  const [currentPage, setCurrentPage] = useState(0);
+  const USERS_PER_PAGE = 7;
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -62,6 +65,14 @@ export default function Participant() {
 
     fetchUsers();
   }, []);
+
+  // 페이지별 유저 잘라내기
+  const paginatedUsers = users.slice(
+    currentPage * USERS_PER_PAGE,
+    (currentPage + 1) * USERS_PER_PAGE
+  );
+  
+  const totalPages = Math.ceil(users.length / USERS_PER_PAGE);
 
   return (
      <Wrapper>
@@ -79,7 +90,7 @@ export default function Participant() {
                 </SearchHeader>
                 
                 <UserList>
-                    {users.map((user, i) => (
+                    {paginatedUsers.map((user, i) => (
                     <UserItem key={i}>
                       <UserInfoRow>
                         <Left>
@@ -91,16 +102,17 @@ export default function Participant() {
                     </UserItem>
                     ))}
                 </UserList>
-
             </Container>
         
         <FooterPagination>
-            <span />
-            <span />
-            <span className="active" />
-            <span />
-            <span />
-      </FooterPagination>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <span
+              key={i}
+              className={i === currentPage ? 'active' : ''}
+              onClick={() => setCurrentPage(i)}
+            />
+          ))}
+        </FooterPagination>
      </Wrapper>
   )
 }
