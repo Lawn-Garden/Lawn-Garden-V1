@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import PageHeader from '@/components/PageHeader'
 import CheckMemberBox from '@/components/CheckMemberBox';
-import { certified, uncertified } from '@/data/proofData';
 import { getTodayUsers } from '@/api/user';
 
 const BoxWrapper = styled.div`

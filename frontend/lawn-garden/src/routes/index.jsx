@@ -10,6 +10,7 @@ import WritePage from '@/pages/watering/WritePage.jsx'
 import CheckMember from '@/pages/check/CheckMember';
 import Participant from '@/pages/participant/participant';
 import MyGarden from '@/pages/mygarden/MyGarden';
+import ProtectedRoute from '@/routes/ProtectedRoute';
 
 export const router = createBrowserRouter([
     {
@@ -24,33 +25,19 @@ export const router = createBrowserRouter([
             path: 'join', 
             element: <Join /> 
         },
+
+        // 로그인 한 사람만 접근 가능
         {
-            path: 'main',
-            element: <Main />
-        },
-        { 
-            path: 'watering', 
-            element: <Proof /> 
-        },
-        { 
-            path: 'watering/:postId', 
-            element: <ReadPage /> 
-        },
-        { 
-            path: 'watering/write', 
-            element: <WritePage /> 
-        },
-        { 
-            path: 'laydown', 
-            element: <CheckMember /> 
-        },
-        { 
-            path: 'farmer', 
-            element: <Participant /> 
-        },
-        { 
-            path:'mygarden', 
-            element: <MyGarden /> 
+            element: <ProtectedRoute />,
+            children: [
+              { path: 'main', element: <Main /> },
+              { path: 'watering', element: <Proof /> },
+              { path: 'watering/write', element: <WritePage /> },
+              { path: 'watering/:postId', element: <ReadPage /> },
+              { path: 'laydown', element: <CheckMember /> },
+              { path: 'farmer', element: <Participant /> },
+              { path: 'mygarden', element: <MyGarden /> },
+            ],
         },
         { 
             path: '*', 
