@@ -56,6 +56,9 @@ export default function Participant() {
   // 정렬 버튼
   const [sortBy, setSortBy] = useState('name'); // or 'level'
 
+  // 검색
+  const [searchQuery, setSearchQuery] = useState('');
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -75,14 +78,25 @@ export default function Participant() {
     sortedUsers.sort((a, b) => a.username.localeCompare(b.username));
   }
   
-  // 페이지별 유저 잘라내기
-  const paginatedUsers = sortedUsers.slice(
+  // 필터링된 유저 목록
+  const filteredUsers = sortedUsers.filter((user) =>
+    user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const paginatedUsers = filteredUsers.slice(
     currentPage * USERS_PER_PAGE,
     (currentPage + 1) * USERS_PER_PAGE
   );
-  
-  const totalPages = Math.ceil(users.length / USERS_PER_PAGE);
 
+  const totalPages = Math.ceil(filteredUsers.length / USERS_PER_PAGE);
+
+  // 페이지별 유저 잘라내기
+  // const paginatedUsers = sortedUsers.slice(
+  //   currentPage * USERS_PER_PAGE,
+  //   (currentPage + 1) * USERS_PER_PAGE
+  // );
+  
+  // const totalPages = Math.ceil(users.length / USERS_PER_PAGE);
 
   return (
      <Wrapper>
@@ -100,7 +114,13 @@ export default function Participant() {
                     >이름순</Filter>
                     {/* <Filter>레벨순</Filter> */}
                     </div>
-                    <SearchBar placeholder='정원사 검색'/>
+                    <SearchBar placeholder='정원사 검색'
+                      value={searchQuery}
+                      onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                        setCurrentPage(0); 
+                      }}
+                    />
                 </SearchHeader>
                 
                 <UserList>

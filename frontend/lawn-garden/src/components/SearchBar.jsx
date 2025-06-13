@@ -29,10 +29,11 @@ const Icon = styled.img`
     pointer-events: none;
 `
 
-export default function SearchBar({placeholder = '검색'}) {
+export default function SearchBar({placeholder = '검색', value, onChange}) {
   return (
     <SearchWrapper>
-      <Search placeholder={placeholder}/>
+      <Search placeholder={placeholder}
+      value={value} onChange={onChange}/>
       <Icon src={searchIcon} alt="Search" />
     </SearchWrapper>
   )
