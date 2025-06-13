@@ -1,5 +1,5 @@
 // 물주기 목록 화면 watering
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
@@ -9,7 +9,8 @@ import ProofItem from '@/components/ProofItem'
 import SearchBar from '@/components/SearchBar'
 import { FooterPagination } from '@/styles/FooterPagination';
 
-import { proofData } from '@/data/proofData';
+// 연결맨~
+import { getPosts } from '@/api/post';
 
 const WriteButton = styled.button`
     background-color: var(--color-light-green);
@@ -43,6 +44,24 @@ const List = styled.article`
 
 export default function Proof() {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const POSTS_PER_PAGE = 5;
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await getPosts({ page: currentPage, size: POSTS_PER_PAGE });
+        setPosts(res.data.content);
+        setTotalPages(res.data.totalPages);
+      } catch (err) {
+        console.error('물주기 목록 조회 실패:', err.response?.data || err.message);
+      }
+    };
+
+    fetchPosts();
+  }, [currentPage]);
 
   return (
     <Wrapper>
@@ -59,19 +78,28 @@ export default function Proof() {
             </SearchHeader>
             
             <List>
-            {proofData.map((item, index) => (
-                <ProofItem key={index} date={item.date} writer={item.writer} 
-                onClick={() => navigate('/watering/:id')}/>
-            ))}
+                {posts.map((item) => (
+                    <ProofItem
+                    key={item.id}
+                    date={item.createdDate}
+                    writer={item.user.username}
+                    onClick={() => navigate(`/watering/${item.id}`)}
+                    />
+                ))}
             </List>
         </Container>
 
         <FooterPagination>
-            <span />
-            <span />
-            <span className="active" />
-            <span />
-            <span />
+            {Array.from({ length: totalPages }).map((_, i) => (
+            <span
+                key={i}
+                className={i === currentPage ? 'active' : ''}
+                onClick={() => {
+                setCurrentPage(i);
+                window.scrollTo(0, 0);
+                }}
+            />
+            ))}
       </FooterPagination>
 
     </Wrapper>

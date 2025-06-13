@@ -25,7 +25,7 @@ export default function CheckMember() {
         <BoxWrapper>
             <CheckMemberBox
               title="금일 미인증자"
-              description="오늘 잔디를 심지 않은 사람입니다! 혼날 준비 하세요!"
+              description="오늘 잔디를 심지 않은 사람입니다!"
               icon="❌"
               list={uncertified}
             />

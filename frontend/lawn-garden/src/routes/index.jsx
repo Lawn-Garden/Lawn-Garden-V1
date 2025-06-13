@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             element: <Proof /> 
         },
         { 
-            path: 'watering/:id', 
+            path: 'watering/:postId', 
             element: <ReadPage /> 
         },
         { 
