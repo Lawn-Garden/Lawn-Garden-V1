@@ -7,6 +7,7 @@ import BlockLabel from '@/styles/BlockLabel'
 import PageHeader from '@/components/PageHeader'
 import Container from '@/styles/Container'
 import ProofItem from '@/components/ProofItem'
+import Loading from '@/components/Loading';
 
 import { getPostById } from '@/api/post';
 
@@ -51,7 +52,7 @@ export default function ReadPage() {
         fetchPost();
       }, [postId]);
 
-    if (!post) return <p>불러오는 중...</p>;
+    if (!post) return <Loading />;
 
   return (
     <Wrapper>
