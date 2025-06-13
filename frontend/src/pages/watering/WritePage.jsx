@@ -70,6 +70,7 @@ const PreviewImage = styled.img`
 export default function WritePage() {
     const navigate = useNavigate();
     const fileInputRef = useRef(null); // ref로 버튼 연결
+    const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null); //사진 미리보기
     const [contents, setContents] = useState('');
 
@@ -83,7 +84,9 @@ export default function WritePage() {
         const file = e.target.files[0];
         if (!file) return;
 
-        const reader = new FileReader(); // base64 형태의 URL로 가져옴
+        setSelectedFile(file);
+
+        const reader = new FileReader();
         reader.onload = () => {
             setPreviewUrl(reader.result); // base64
         };
@@ -99,15 +102,9 @@ export default function WritePage() {
         const formData = new FormData();
         formData.append('link', 'https://testlink.com'); // 문자열
         formData.append('contents', contents);           // 문자열
-        formData.append('base64Image', previewUrl);  
+        formData.append('imageFile', selectedFile);  
 
         try {
-        //   await createPost({
-        //     link: 'https://testlink.com', //이게모지 일단 넣기
-        //     contents,
-        //     base64Image: previewUrl,
-        //   });
-
             await createPost(formData)
             alert('물주기 글이 작성되었습니다!');
             navigate('/watering');
