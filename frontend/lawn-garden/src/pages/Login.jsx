@@ -7,6 +7,8 @@ import Input from '@/components/Input'
 import Button from '@/components/Button'
 import { SignText, TextButton } from '@/components/SignText'
 import { login } from '@/api/auth'
+// 토큰 저장위한 store
+import { useAuthStore } from '@/store/authStore';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,6 +18,11 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await login({ username, password });
+      const res = await login({ username, password });
+      const { accessToken } = res.data;
+
+      useAuthStore.getState().setAccessToken(accessToken);
+
       alert('로그인 성공!');
       navigate('/main');
     } catch (err) {

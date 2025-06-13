@@ -1,4 +1,5 @@
 // 잔디정원 참여자 조회 farmer
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Wrapper from '@/styles/Wrapper'
 import PageHeader from '@/components/PageHeader'
@@ -7,6 +8,9 @@ import SearchBar from '@/components/SearchBar'
 import { FooterPagination } from '@/styles/FooterPagination';
 import { UserList, UserItem, UserInfoRow, Icon, Count,} from '@/styles/UserList';
 import { participants } from '@/data/proofData';
+
+// 유저 정보 불러오기
+import { getAllUsers } from '@/api/user';
 
 const SearchHeader = styled.header`
     display: flex;
@@ -44,6 +48,21 @@ const Left = styled.div`
 
 
 export default function Participant() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await getAllUsers();
+        setUsers(res.data); // 서버에서 온 데이터 저장
+      } catch (err) {
+        console.error('유저 조회 실패:', err.response?.data || err.message);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
      <Wrapper>
         <PageHeader title="잔디정원 참여자"/>
@@ -60,13 +79,14 @@ export default function Participant() {
                 </SearchHeader>
                 
                 <UserList>
-                    {participants.map((user, i) => (
+                    {users.map((user, i) => (
                     <UserItem key={i}>
                       <UserInfoRow>
                         <Left>
-                          <Icon>🌱</Icon> {user.name}
+                          <Icon>🌱</Icon> {user.username}
                         </Left>
-                        <Count>{user.count}</Count>
+                        <Count>-</Count>
+                        {/* <Count>{user.count}</Count> */}
                       </UserInfoRow>
                     </UserItem>
                     ))}

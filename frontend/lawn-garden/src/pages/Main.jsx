@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import Wrapper from '@/styles/Wrapper'
 import ArrowButton from '@/components/ArrowButton'
+import { useAuthStore } from '@/store/authStore';
 
 const HeaderText = styled.header`
     color: var(--color-light-green);
@@ -31,6 +32,14 @@ const Pole = styled.div`
 `
 export default function Main() {
     const navigate = useNavigate();
+    const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
+  
+    const handleLogout = () => {
+      clearAccessToken();           // Zustand 토큰 제거
+      localStorage.clear();         // 혹시 localStorage에 저장한 값도 있다면 같이 삭제
+      navigate('/');           
+    };
+
   return (
     <Wrapper marginBottom>
       <HeaderText>
@@ -52,7 +61,8 @@ export default function Main() {
         <ArrowButton direction='right' text='내 정원 조회' angle={-10}
         onClick={() => navigate('/mygarden')}
         />
-        <ArrowButton direction='center' text='로그아웃' angle={2}/>
+        <ArrowButton direction='center' text='로그아웃' angle={2}
+          onClick={handleLogout}/>
       </SignsSection>
     </Wrapper>
   )
