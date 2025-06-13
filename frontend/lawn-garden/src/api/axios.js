@@ -13,7 +13,7 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
     (config) => {
       const token = useAuthStore.getState().accessToken;
-    //   console.log('🔑 토큰:', token);
+      console.log('🔑 토큰:', token);
       if (token) {
         config.headers.Authorization = `${token}`;
       }

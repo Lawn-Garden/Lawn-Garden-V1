@@ -7,6 +7,9 @@ import PageHeader from '@/components/PageHeader'
 import Container from '@/styles/Container'
 import ProofItem from '@/components/ProofItem'
 import Button from '@/components/Button'
+import { createPost } from '@/api/post';
+import { useNavigate } from 'react-router-dom';
+
 
 const PhotoBlock = styled.div`
     display: flex;
@@ -65,8 +68,12 @@ const PreviewImage = styled.img`
 `;
 
 export default function WritePage() {
+    const navigate = useNavigate();
     const fileInputRef = useRef(null); // ref로 버튼 연결
-    const [previewUrl, setPreviewUrl] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null); //사진 미리보기
+    const [contents, setContents] = useState('');
+
+    const today = new Date().toISOString().split('T')[0];
 
     const handleButtonClick = () => {
         fileInputRef.current?.click();
@@ -83,12 +90,38 @@ export default function WritePage() {
         reader.readAsDataURL(file);
     };
 
+    const handleSubmit = async () => {
+        if (!previewUrl || !contents.trim()) {
+          alert('이미지와 한마디는 필수로 입력해주세요!');
+          return;
+        }
+        
+        const formData = new FormData();
+        formData.append('link', 'https://testlink.com'); // 문자열
+        formData.append('contents', contents);           // 문자열
+        formData.append('base64Image', previewUrl);  
+
+        try {
+        //   await createPost({
+        //     link: 'https://testlink.com', //이게모지 일단 넣기
+        //     contents,
+        //     base64Image: previewUrl,
+        //   });
+
+            await createPost(formData)
+            alert('물주기 글이 작성되었습니다!');
+            navigate('/watering');
+        } catch (err) {
+          console.error('글 작성 실패:', err.response?.data || err.message);
+          alert('글 작성 실패');
+        }
+      };
+
   return (
     <Wrapper>
         <PageHeader title="오늘의 잔디정원"/>
         <Container>
-            {/* 나중에 넘겨받으면됨 */}
-            <ProofItem date='2025.03.31' writer='나' />
+            <ProofItem date={today} writer='나' />
 
             <BlockLabel>오늘의 활동 인증</BlockLabel>
             <PhotoBlock>
@@ -108,11 +141,13 @@ export default function WritePage() {
             <BlockLabel>오늘의 한마디</BlockLabel>
             <Block2>
                 <CommentBox 
+                value={contents}
+                onChange={(e) => setContents(e.target.value)}
                 placeholder={
                     '오늘의 한마디를 작성해주세요!\n오늘 공부한 내용이나 기분, 어떤한 내용이든 좋습니다 :)'
                   }/>
             </Block2>
-            <Button $marginB="0px" $bgColor="#A3D1C6">
+            <Button $marginB="0px" $bgColor="#A3D1C6"  onClick={handleSubmit}>
                 글 작성하기</Button>
         </Container>
     </Wrapper>

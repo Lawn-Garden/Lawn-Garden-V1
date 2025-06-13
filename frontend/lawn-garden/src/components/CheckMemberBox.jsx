@@ -41,10 +41,10 @@ export default function CheckMemberBox({ title, description, icon, list }) {
       <BoxTitle>{title}</BoxTitle>
       <SubText>{description}</SubText>
       <UserList>
-        {list.map((name, i) => (
-          <UserItem key={i}>
+        {list.map((user, i) => (
+          <UserItem key={user.id ?? i}>
             <Icon>{icon}</Icon>
-            {name}
+            {user.username}
           </UserItem>
         ))}
       </UserList>
