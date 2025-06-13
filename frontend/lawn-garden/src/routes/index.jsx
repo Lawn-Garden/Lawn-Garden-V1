@@ -7,6 +7,9 @@ import Main from '@/pages/Main.jsx'
 import Proof from '@/pages/watering/Proof.jsx'
 import ReadPage from '@/pages/watering/ReadPage.jsx'
 import WritePage from '@/pages/watering/WritePage.jsx'
+import CheckMember from '@/pages/check/CheckMember';
+import Participant from '@/pages/participant/participant';
+import MyGarden from '@/pages/mygarden/MyGarden';
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +39,18 @@ export const router = createBrowserRouter([
         { 
             path: 'watering/write', 
             element: <WritePage /> 
+        },
+        { 
+            path: 'laydown', 
+            element: <CheckMember /> 
+        },
+        { 
+            path: 'farmer', 
+            element: <Participant /> 
+        },
+        { 
+            path:'mygarden', 
+            element: <MyGarden /> 
         },
         { 
             path: '*', 
