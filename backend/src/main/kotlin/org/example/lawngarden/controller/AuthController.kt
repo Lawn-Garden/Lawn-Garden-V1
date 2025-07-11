@@ -4,7 +4,9 @@ import org.example.lawngarden.auth.dto.LoginRequest
 import org.example.lawngarden.auth.dto.LoginResponse
 import org.example.lawngarden.auth.token.TokenProvider
 import org.example.lawngarden.auth.details.UserDetailsImpl
+import org.example.lawngarden.dto.UserDetailResponseDto
 import org.example.lawngarden.entity.User
+import org.example.lawngarden.mapper.toUserDetailResponseDto
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
@@ -29,10 +31,12 @@ class AuthController(
 
         val authentication = this.authentication(loginRequest.username, loginRequest.password)
         val userDetails = authentication.principal as UserDetailsImpl
-        val accessToken : String = tokenProvider.createAccessToken(userDetails.user)
-        val refreshToken : String = tokenProvider.createRefreshToken(userDetails.user)
+        val user : User = userDetails.user
 
-        val loginResponse = LoginResponse(prefix + accessToken, prefix + refreshToken)
+        val accessToken : String = tokenProvider.createAccessToken(user)
+        val refreshToken : String = tokenProvider.createRefreshToken(user)
+
+        val loginResponse = LoginResponse(prefix + accessToken, prefix + refreshToken,user.toUserDetailResponseDto())
         return ResponseEntity(loginResponse, HttpStatus.OK)
     }
 

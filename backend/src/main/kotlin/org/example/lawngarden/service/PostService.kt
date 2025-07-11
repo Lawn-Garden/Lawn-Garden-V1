@@ -24,8 +24,12 @@ class PostService(
     private val postRepository: PostRepository,
 ) {
 
-    fun findAllPost(pageData: Pageable): Page<PostResponseDto> {
-        val findAll: Page<Post> = postRepository.findAllByOrderByCreatedDateDescIdDesc(pageData)
+    fun findAllPost(pageData: Pageable, keyword: String): Page<PostResponseDto> {
+
+        val findAll: Page<Post> =
+            if (keyword.isEmpty()) postRepository.findAllByOrderByCreatedDateDescIdDesc(pageData)
+             else postRepository.findAllByUserUsernameContainingOrderByCreatedDateDescIdDesc(keyword, pageData)
+
         return findAll.map { x -> x?.toPostResponseDto() }
     }
 
@@ -49,8 +53,9 @@ class PostService(
     }
 
     @Transactional
-    fun updatePost(post: PostRequestDto, postId:Long, user: User) {
-        val findPostById = postRepository.findPostById(postId) ?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
+    fun updatePost(post: PostRequestDto, postId: Long, user: User) {
+        val findPostById =
+            postRepository.findPostById(postId) ?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
         if (findPostById.user != user) {
             throw AccessDeniedException("유저가 없습니다.")
         }
@@ -58,7 +63,8 @@ class PostService(
     }
 
     fun deletePost(postId: Long, user: User) {
-        val findById: Post = postRepository.findPostById(postId)?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
+        val findById: Post =
+            postRepository.findPostById(postId) ?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
 
         if (findById.user != user) {
             throw AccessDeniedException("유저가 일치하지 않습니다.")

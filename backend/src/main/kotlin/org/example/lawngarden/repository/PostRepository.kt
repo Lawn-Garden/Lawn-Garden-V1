@@ -11,6 +11,7 @@ interface PostRepository : JpaRepository<Post?, Long?> {
     fun findByCreatedDate(date: LocalDate?): List<Post?>?
     fun findByCreatedDateBetween(start: LocalDate?, end: LocalDate?): List<Post?>?
     fun findAllByOrderByCreatedDateDescIdDesc(pageable: Pageable): Page<Post>
+    fun findAllByUserUsernameContainingOrderByCreatedDateDescIdDesc(keyword: String, pageable: Pageable): Page<Post>
     fun existsPostByUserAndCreatedDate(user: User, date: LocalDate?): Boolean
     fun findPostById(id: Long): Post?
 }

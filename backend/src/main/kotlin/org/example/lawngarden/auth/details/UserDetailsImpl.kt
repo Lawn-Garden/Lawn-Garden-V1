@@ -18,6 +18,10 @@ class UserDetailsImpl(val user: User) : UserDetails {
         return user.username
     }
 
+    fun getUser(): User{
+        return user;
+    }
+
     val roleName: String
         get() = user.getRole().getDisplayName()
 
