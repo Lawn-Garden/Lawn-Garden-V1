@@ -36,5 +36,5 @@ logging:
         security: DEBUG  # Spring Security ?? ??
 jwt:
   secret: lawn-garden-jwt-secret-key-kkk-is-not-weak-ok
-  access-token-expiration: 900000        # 15분
+  access-token-expiration: 6000000        # 100분
   refresh-token-expiration: 1209600000   # 14일
