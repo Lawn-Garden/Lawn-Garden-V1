@@ -4,10 +4,10 @@ server:
     context-path: /
 spring:
   datasource:
-    url: jdbc:mariadb://43.201.157.40:3306/garden
+    url: ${DATABASE_URL}
     driver-class-name: org.mariadb.jdbc.Driver
-    username: dev
-    password: qwe123,.
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update

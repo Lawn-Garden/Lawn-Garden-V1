@@ -9,7 +9,7 @@ import java.time.LocalDate
 import java.util.*
 
 @Repository
-interface UserRepository : JpaRepository<User?, Long?> {
+interface UserRepository : JpaRepository<User, Long?> {
     fun findByUsername(username: String?): Optional<User?>?
     fun existsByUsername(username: String?): Boolean
     fun existsUserByEmail(email: String?): Boolean

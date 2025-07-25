@@ -56,7 +56,7 @@ class PostService(
     fun updatePost(post: PostRequestDto, postId: Long, user: User) {
         val findPostById =
             postRepository.findPostById(postId) ?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
-        if (findPostById.user != user) {
+        if (findPostById.user.id != user.id) {
             throw AccessDeniedException("유저가 없습니다.")
         }
         postRepository.save(findPostById.updatePost(post))
@@ -66,7 +66,7 @@ class PostService(
         val findById: Post =
             postRepository.findPostById(postId) ?: throw NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다. id=$postId")
 
-        if (findById.user != user) {
+        if (findById.user.id != user.id) {
             throw AccessDeniedException("유저가 일치하지 않습니다.")
         }
         postRepository.delete(findById)

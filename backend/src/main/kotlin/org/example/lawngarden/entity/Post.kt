@@ -31,7 +31,7 @@ class Post(
     @Transient
     var imageFile: MultipartFile? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     var user: User
 )

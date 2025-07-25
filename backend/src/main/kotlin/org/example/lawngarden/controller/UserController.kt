@@ -39,4 +39,6 @@ class UserController(
         val findTodayCommitUser = userService.findTodayCommitUser(commit)
         return ResponseEntity.ok(findTodayCommitUser);
     }
+
+
 }

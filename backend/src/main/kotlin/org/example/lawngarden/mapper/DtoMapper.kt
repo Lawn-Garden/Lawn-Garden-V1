@@ -23,6 +23,13 @@ fun User.toUserDetailResponseDto(): UserDetailResponseDto = UserDetailResponseDt
     email = this.email,
 )
 
+fun User.toUserStatsResponseDto(count : Long): UserStatsResponseDto = UserStatsResponseDto(
+    id = this.id,
+    username = this.username,
+    email = this.email,
+    commitCount = count.toString()
+)
+
 fun Post.toPostResponseDto() : PostResponseDto = PostResponseDto(
         id = this.id,
         createdDate = this.createdDate,
