@@ -1,7 +1,5 @@
 server:
   port: 8082
-  servlet:
-    context-path: /
 spring:
   datasource:
     url: ${DATABASE_URL}
@@ -15,20 +13,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
-  thymeleaf:
-    cache: false  # ?? ??? false, ?? ? true
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML
-
-  security:
-    user:
-      name: admin
-      password: admin123  # Spring Security ?? ??? ?? (????)
-
-  web:
-    resources:
-      static-locations: file:src/main/resources/static/
 logging:
   level:
     org:
